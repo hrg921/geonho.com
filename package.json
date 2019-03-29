@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://gitlab.com/hrg921/geonho.com/issues"
   },
-  "homepage": "https://gitlab.com/hrg921/geonho.com#readme"
+  "homepage": "https://gitlab.com/hrg921/geonho.com#readme",
+  "dependencies": {
+    "typescript": "^3.3.4000"
+  }
 }
