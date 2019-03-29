@@ -17,6 +17,7 @@
   },
   "homepage": "https://gitlab.com/hrg921/geonho.com#readme",
   "dependencies": {
+    "express": "^4.16.4",
     "typescript": "^3.3.4000"
   }
 }
