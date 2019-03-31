@@ -24,6 +24,7 @@ type MoneyTransaction {
   transactionTime: DateTime!
   flowType: String!
   amount: Float!
+  unit: String!
   from: String!
   to: String!
 }

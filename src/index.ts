@@ -8,6 +8,7 @@ import { ObjectIdScalar } from './object-id.scalar';
 import { TypegooseMiddleware } from './typegoose-middleware';
 
 async function bootstrap() {
+    const APOLLO_ENGINE_API_KEY = process.env.APOLLO_ENGINE_API_KEY;
     const MONGO_DB_USERNAME = process.env.MONGO_DB_USERNAME;
     const MONGO_DB_PASSWORD = process.env.MONGO_DB_PASSWORD;
     const MONGO_DB_CLUSTER = process.env.MONGO_DB_CLUSTER;
@@ -30,6 +31,9 @@ async function bootstrap() {
     const server = new ApolloServer({
         schema,
         playground: true,
+        engine: {
+            apiKey: APOLLO_ENGINE_API_KEY,
+        },
     });
 
     const { url } = await server.listen(process.env.PORT || 4000);
