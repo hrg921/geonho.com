@@ -13,29 +13,27 @@ export class BookResolver {
 
     @Query(returns => Book, { nullable: true })
     async bookById(
-        @Arg("bookId") bookId: ObjectId
+        @Arg('bookId', type => ObjectIdScalar) bookId: ObjectId
     ): Promise<Book | null> {
         return await BookModel.findOne({ _id: bookId });
     }
 
     @Mutation(returns => Book)
-    async addBook(
-        @Arg("book") bookInput: BookInput
-    ): Promise<Book> {
+    async addBook(@Arg('book') bookInput: BookInput): Promise<Book> {
         return await new BookModel(bookInput).save();
     }
 
     @Mutation(returns => Book, { nullable: true })
     async updateBook(
-        @Arg("book") bookInput: BookInput,
-        @Arg("bookId") bookId: ObjectId
+        @Arg('book') bookInput: BookInput,
+        @Arg('bookId', type => ObjectIdScalar) bookId: ObjectId
     ): Promise<Book | null> {
         return await BookModel.findOneAndUpdate({ _id: bookId }, bookInput);
     }
 
     @Mutation(returns => Book, { nullable: true })
     async deleteBook(
-        @Arg("bookId", type => ObjectIdScalar) bookId: ObjectId
+        @Arg('bookId', type => ObjectIdScalar) bookId: ObjectId
     ): Promise<Book | null> {
         return await BookModel.findOneAndRemove({ _id: bookId });
     }
