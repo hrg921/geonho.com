@@ -1,3 +1,8 @@
 node_modules/
 
 .DS_Store
+
+# blog.geonho.com
+
+blog/.cache/
+blog/public/
