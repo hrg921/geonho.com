@@ -1,21 +1,42 @@
-import { Resolver, Query } from 'type-graphql';
-import { Book } from './book.type';
+import { Arg, Mutation, Resolver, Query } from 'type-graphql';
+import { BookInput } from './book.input';
+import { Book, BookModel } from './book.type';
+import { ObjectIdScalar } from '../../object-id.scalar';
+import { ObjectId } from 'mongodb';
 
 @Resolver(of => Book)
 export class BookResolver {
-    private readonly bookDatas: Book[] = [
-        {
-          title: 'Harry Potter and the Chamber of Secrets',
-          author: 'J.K. Rowling',
-        },
-        {
-          title: 'Jurassic Park',
-          author: 'Michael Crichton',
-        },
-    ];
-
     @Query(returns => [Book])
-    async books(): Promise<Book[]> {
-        return await this.bookDatas;
+    async booksByBookFilter(): Promise<Book[]> {
+        return await BookModel.find({});
+    }
+
+    @Query(returns => Book, { nullable: true })
+    async bookById(
+        @Arg("bookId") bookId: ObjectId
+    ): Promise<Book | null> {
+        return await BookModel.findOne({ _id: bookId });
+    }
+
+    @Mutation(returns => Book)
+    async addBook(
+        @Arg("book") bookInput: BookInput
+    ): Promise<Book> {
+        return await new BookModel(bookInput).save();
+    }
+
+    @Mutation(returns => Book, { nullable: true })
+    async updateBook(
+        @Arg("book") bookInput: BookInput,
+        @Arg("bookId") bookId: ObjectId
+    ): Promise<Book | null> {
+        return await BookModel.findOneAndUpdate({ _id: bookId }, bookInput);
+    }
+
+    @Mutation(returns => Book, { nullable: true })
+    async deleteBook(
+        @Arg("bookId", type => ObjectIdScalar) bookId: ObjectId
+    ): Promise<Book | null> {
+        return await BookModel.findOneAndRemove({ _id: bookId });
     }
 }

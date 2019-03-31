@@ -4,10 +4,26 @@
 # -----------------------------------------------
 
 type Book {
+  _id: ObjectId!
   title: String!
   author: String!
 }
 
+input BookInput {
+  title: String!
+  author: String!
+}
+
+type Mutation {
+  addBook(book: BookInput!): Book!
+  updateBook(bookId: ObjectId!, book: BookInput!): Book
+  deleteBook(bookId: ObjectId!): Book
+}
+
+"""Mongo object id scalar type"""
+scalar ObjectId
+
 type Query {
-  books: [Book!]!
+  booksByBookFilter: [Book!]!
+  bookById(bookId: ObjectId!): Book
 }
