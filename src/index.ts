@@ -13,25 +13,25 @@ async function bootstrap() {
     const MONGO_DB_CLUSTER = process.env.MONGO_DB_CLUSTER;
     const MONGO_DB_DB = process.env.MONGO_DB_DB;
 
-    await connect(`mongodb+srv://${MONGO_DB_USERNAME}:${MONGO_DB_PASSWORD}@${MONGO_DB_CLUSTER}.mongodb.net/${MONGO_DB_DB}?retryWrites=true`, { useNewUrlParser: true });
+    await connect(
+        `mongodb+srv://${MONGO_DB_USERNAME}:${MONGO_DB_PASSWORD}@${MONGO_DB_CLUSTER}.mongodb.net/${MONGO_DB_DB}?retryWrites=true`,
+        { useNewUrlParser: true }
+    );
 
     // build TypeGraphQL executable schema
     const schema = await buildSchema({
-      resolvers: [__dirname + "/schema/**/*.resolver.ts"],
-      // automatically create `schema.gql` file with schema definition in current folder
-      emitSchemaFile: path.resolve(__dirname, "./schema/schema.gql"),
-      globalMiddlewares: [TypegooseMiddleware],
-      scalarsMap: [{ type: ObjectId, scalar: ObjectIdScalar }],
+        resolvers: [__dirname + '/schema/**/*.resolver.ts'],
+        // automatically create `schema.gql` file with schema definition in current folder
+        emitSchemaFile: path.resolve(__dirname, './schema/schema.gql'),
+        globalMiddlewares: [TypegooseMiddleware],
+        scalarsMap: [{ type: ObjectId, scalar: ObjectIdScalar }],
     });
-  
-    // Create GraphQL server
+
     const server = new ApolloServer({
-      schema,
-      // enable GraphQL Playground
-      playground: true,
+        schema,
+        playground: true,
     });
-  
-    // Start the server
+
     const { url } = await server.listen(process.env.PORT || 4000);
     console.log(`Server is running, GraphQL Playground available at ${url}`);
 }
