@@ -44,6 +44,9 @@ type Mutation {
   addMoneyTransaction(moneyTransaction: MoneyTransactionInput!): MoneyTransaction!
   updateMoneyTransaction(moneyTransactionId: ObjectId!, moneyTransaction: MoneyTransactionInput!): MoneyTransaction
   deleteMoneyTransaction(moneyTransactionId: ObjectId!): MoneyTransaction
+  addWishProduct(WishProduct: WishProductInput!): WishProduct!
+  updateWishProduct(WishProductId: ObjectId!, WishProduct: WishProductInput!): WishProduct
+  deleteWishProduct(WishProductId: ObjectId!): WishProduct
 }
 
 """Mongo object id scalar type"""
@@ -54,4 +57,24 @@ type Query {
   bookById(bookId: ObjectId!): Book
   moneyTransactionsByMoneyTransactionFilter: [MoneyTransaction!]!
   moneyTransactionById(moneyTransactionId: ObjectId!): MoneyTransaction
+  WishProductsByWishProductFilter: [WishProduct!]!
+  WishProductById(WishProductId: ObjectId!): WishProduct
+}
+
+type WishProduct {
+  _id: ObjectId!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  boughtAt: DateTime!
+  title: String
+  link: String
+  money: Float
+  unit: String!
+}
+
+input WishProductInput {
+  title: String!
+  link: String!
+  amount: Float!
+  unit: String!
 }
