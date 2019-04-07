@@ -16,6 +16,7 @@ export interface RouteItem {
 
 interface Props {
     basePath: string;
+    navigationTitle: string;
     routes: RouteItem[];
 }
 
@@ -29,7 +30,7 @@ export default class Navigation extends React.PureComponent<Props> {
 
     public render() {
         const { open } = this;
-        const { basePath, routes } = this.props;
+        const { basePath, navigationTitle, routes } = this.props;
 
         return (
             <NavigationContainer>
@@ -39,7 +40,7 @@ export default class Navigation extends React.PureComponent<Props> {
                             <MenuIcon/>
                         </IconButton>
                         <Typography>
-                            Money Flow
+                            {navigationTitle}
                         </Typography>
                     </Toolbar>
                 </AppBar>

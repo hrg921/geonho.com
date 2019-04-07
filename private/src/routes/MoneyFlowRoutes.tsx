@@ -9,7 +9,7 @@ export default class MoneyFlowRoutes extends React.PureComponent {
     public render() {
         return (
             <Container>
-                <Navigation basePath={basePath} routes={routes}/>
+                <Navigation basePath={basePath} navigationTitle={title} routes={routes}/>
                 <Switch>
                     {routes.map(route => <Route path={`/${basePath}/${route.path}`} exact component={route.component} />)}
                     <Route component={MoneyFlowPage} />
@@ -33,6 +33,7 @@ export const indexRoute = {
     path: '',
 }
 
+const title = 'Money Flow';
 const routes: RouteItem[] = [wishProductsRoute, indexRoute]
 
 const Container = styled.div``;
