@@ -19,6 +19,57 @@ The javascript `Date` as string. Type represents date and time as the ISO Date s
 """
 scalar DateTime
 
+type Maker {
+  _id: ObjectId!
+  title: String!
+  current: Boolean!
+  createdAt: DateTime!
+  makerType: MakerType!
+  tasks: [MakerTask!]!
+}
+
+input MakerInput {
+  transactionTime: DateTime!
+  title: String!
+  makerType: MakerType!
+  tasks: [ObjectId!]
+}
+
+type MakerRecord {
+  _id: ObjectId!
+  date: DateTime!
+  maker: Maker!
+  makerType: MakerType!
+  checks: [Boolean!]!
+}
+
+input MakerRecordInput {
+  date: DateTime!
+  maker: ObjectId!
+  makerType: String!
+}
+
+type MakerTask {
+  _id: ObjectId!
+  title: String!
+  comment: String
+}
+
+input MakerTaskInput {
+  title: String!
+  comment: String
+}
+
+"""Type of Maker"""
+enum MakerType {
+  DAILY
+  WEEKLY
+  MONTHLU
+  QUARTERLY
+  YEARLY
+  CENTURILY
+}
+
 type MoneyTransaction {
   _id: ObjectId!
   transactionTime: DateTime!
@@ -41,6 +92,15 @@ type Mutation {
   addBook(book: BookInput!): Book!
   updateBook(bookId: ObjectId!, book: BookInput!): Book
   deleteBook(bookId: ObjectId!): Book
+  addMakerRecord(makerRecord: MakerRecordInput!): MakerRecord!
+  updateMakerRecord(makerRecordId: ObjectId!, makerRecord: MakerRecordInput!): MakerRecord
+  deleteMakerRecord(makerRecordId: ObjectId!): MakerRecord
+  addMakerTask(makerTask: MakerTaskInput!): MakerTask!
+  updateMakerTask(makerTaskId: ObjectId!, makerTask: MakerTaskInput!): MakerTask
+  deleteMakerTask(makerTaskId: ObjectId!): MakerTask
+  addMaker(maker: MakerInput!): Maker!
+  updateMaker(makerId: ObjectId!, maker: MakerInput!): Maker
+  deleteMaker(makerId: ObjectId!): Maker
   addMoneyTransaction(moneyTransaction: MoneyTransactionInput!): MoneyTransaction!
   updateMoneyTransaction(moneyTransactionId: ObjectId!, moneyTransaction: MoneyTransactionInput!): MoneyTransaction
   deleteMoneyTransaction(moneyTransactionId: ObjectId!): MoneyTransaction
@@ -55,6 +115,12 @@ scalar ObjectId
 type Query {
   booksByBookFilter: [Book!]!
   bookById(bookId: ObjectId!): Book
+  makerRecordsByFilter: [MakerRecord!]!
+  makerRecordById(makerRecordId: ObjectId!): MakerRecord
+  makerTasksByFilter: [MakerTask!]!
+  makerTaskById(makerTaskId: ObjectId!): MakerTask
+  makersByMakerFilter: [Maker!]!
+  makerById(makerId: ObjectId!): Maker
   moneyTransactionsByMoneyTransactionFilter: [MoneyTransaction!]!
   moneyTransactionById(moneyTransactionId: ObjectId!): MoneyTransaction
   WishProductsByWishProductFilter: [WishProduct!]!
