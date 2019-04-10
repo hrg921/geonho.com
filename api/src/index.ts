@@ -1,4 +1,5 @@
 import { ApolloServer } from 'apollo-server';
+import dotenv from 'dotenv';
 import { ObjectId } from 'mongodb';
 import { connect } from 'mongoose';
 import * as path from 'path';
@@ -8,6 +9,8 @@ import { ObjectIdScalar } from './object-id.scalar';
 import { TypegooseMiddleware } from './typegoose-middleware';
 
 async function bootstrap() {
+    dotenv.config();
+
     const APOLLO_ENGINE_API_KEY = process.env.APOLLO_ENGINE_API_KEY;
     const MONGO_DB_USERNAME = process.env.MONGO_DB_USERNAME;
     const MONGO_DB_PASSWORD = process.env.MONGO_DB_PASSWORD;

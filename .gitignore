@@ -8,3 +8,6 @@ blog/.cache/
 blog/public/
 
 .vscode/
+
+# api.geonho.com
+api/.env
