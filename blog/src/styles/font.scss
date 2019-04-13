@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:500&subset=korean');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC:700');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,900&subset=korean');
 
 * {
     font-family: 'Noto Sans KR', sans-serif;
@@ -6,4 +7,34 @@
 
 html, body {
     font-size: 16px;
+}
+
+h1 {
+    font-size: 2.4em;
+    font-weight: 900;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.7em;
+}
+
+h4 {
+    font-size: 1.4em;
+}
+
+h5 {
+    font-size: 1.2em;
+}
+
+h6 {
+    font-size: 1.1em;
+}
+
+p {
+    font-size: 1em;
+    font-weight: 300;
 }

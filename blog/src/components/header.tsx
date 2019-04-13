@@ -17,10 +17,10 @@ export default class Header extends React.PureComponent<Props> {
       <HeaderContainer>
         <Title>
           <Link to='/'>
-          {siteTitle}
-          </Link>, 
+          {`${siteTitle},`}
+          </Link> 
           <Link to={`/${subject}`}>
-          {subjectDisplay}
+          {` ${subjectDisplay}`}
           </Link>
         </Title>
       </HeaderContainer>
@@ -30,11 +30,16 @@ export default class Header extends React.PureComponent<Props> {
 
 const HeaderContainer = styled.header`
   position: fixed;
+  top: 16px;
+  left: 16px;
 `;
 
 const Title = styled.h1`
+  margin-top: 0;
+
   a {
     color: #333;
     text-decoration: none;
+    font-family: 'Amatic SC', cursive;
   }
 `;

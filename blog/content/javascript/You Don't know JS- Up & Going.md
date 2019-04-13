@@ -3,6 +3,12 @@ title: You don't know JS - Up & Going
 ---
 # You Don't know JS: Up & Going
 
+## Preface
+JavaScript is simultaneously a simple, easy-to-use language that has broad appeal, and a complex and nuanced collection of language mechanics which without careful study will elud *true understanding* even for the most seasoned of JavaScript developers.
+
+### Paradox of JavaScript
+Therein lies the paradox of JavaScript, the Achilles' Heel of the language, the challenge we are presently addressing. Because JavaScript can be used without understanding, the understanding of the language is often never attained.
+
 ## Chapter 1: Into Programming
 For the Beginner, basic programming concepts are introduced.
 
@@ -47,3 +53,25 @@ plusTen( 13 );      // 23 <-- 10 + 13
 
 #### Related Background Knowledge
 Unconsciously, I used this concept with React when I have to create event handler with respect to list value.
+
+## Chapter 3: Into YDKJS
+Briefly summarize what to expect from the rest of the books.
+
+### Scope & Closures
+How scoping of variables really works in JavaScript.
+
+#### Knowledges
+- The JS engine compiles your code right before (and sometimes during!) execution.
+- Hoisting
+- Lexical Scope
+- Closure
+- Module Pattern
+
+### This & Object Prototypes
+Four simple rules to understand and fully determine `this`binding.
+
+#### Knowledges
+- look-up chain
+- behavior delegation
+
+### Types & Grammer
