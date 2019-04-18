@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Navigation, { RouteItem } from '../components/Navigation';
 import DailyMakerPage from '../pages/maker/DailyMakerPage';
+import DailyMakerTasksPage from '../pages/maker/DailyMakerTasksPage';
 import { Switch } from 'react-router';
 import { Route } from 'react-router-dom';
 
@@ -27,8 +28,14 @@ export const dailyMakerRoute = {
     path: 'daily'
 };
 
+export const dailyMakerTasksRoute = {
+    component: DailyMakerTasksPage,
+    title: 'Daily Maker Tasks',
+    path: 'daily/tasks'
+};
+
 const title = 'Maker';
-const routes: RouteItem[] = [dailyMakerRoute];
+const routes: RouteItem[] = [dailyMakerRoute, dailyMakerTasksRoute];
 
 const Container = styled.div`
 `;

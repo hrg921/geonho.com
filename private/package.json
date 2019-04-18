@@ -11,9 +11,11 @@
     "@types/react-dom": "16.8.3",
     "@types/react-router-dom": "^4.3.1",
     "@types/styled-components": "^4.1.12",
+    "apollo-boost": "^0.3.1",
     "mobx": "^5.9.4",
     "mobx-react": "^5.4.3",
     "react": "^16.8.6",
+    "react-apollo": "^2.5.4",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
@@ -21,6 +23,7 @@
     "typescript": "3.4.1"
   },
   "scripts": {
+    "codegen:local": "apollo client:codegen ./src/graphqls/schema.ts --endpoint=http://localhost:4000/graphql --target=typescript --outputFlat --no-addTypename",
     "start": "env=localhost:4000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -34,5 +37,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "apollo": "^2.8.3"
+  }
 }
