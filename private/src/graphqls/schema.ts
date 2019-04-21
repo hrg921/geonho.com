@@ -25,6 +25,28 @@ export interface AddMakerTaskVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: DeleteMakerTask
+// ====================================================
+
+export interface DeleteMakerTask_deleteMakerTask {
+  _id: any;
+  comment: string | null;
+  title: string;
+}
+
+export interface DeleteMakerTask {
+  deleteMakerTask: DeleteMakerTask_deleteMakerTask | null;
+}
+
+export interface DeleteMakerTaskVariables {
+  makerTaskId: any;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: MakerTaskList
 // ====================================================
 

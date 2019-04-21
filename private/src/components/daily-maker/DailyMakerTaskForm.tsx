@@ -1,11 +1,11 @@
 import React from 'react';
 import { MutationFn } from 'react-apollo';
 import { Form, Formik } from 'formik';
-import { AddMakerTask, AddMakerTaskVariables } from '../graphqls/schema';
+import { AddMakerTask, AddMakerTaskVariables } from '../../graphqls/schema';
 import {
   AddMakerTaskMutation,
   ADD_MAKER_TASK,
-} from '../graphqls/Maker/mutations';
+} from '../../graphqls/Maker/mutations';
 
 interface FormValues {
   title: string;
