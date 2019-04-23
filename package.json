@@ -1,0 +1,35 @@
+{
+  "name": "geonho.com",
+  "version": "1.0.0",
+  "description": "## api api.geonho.com, elastic beanstalk",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hrg921/geonho.com.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/hrg921/geonho.com/issues"
+  },
+  "homepage": "https://github.com/hrg921/geonho.com#readme",
+  "devDependencies": {
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.17.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
