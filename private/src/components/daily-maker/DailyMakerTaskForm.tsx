@@ -1,43 +1,64 @@
+import { Button, TextField } from '@material-ui/core';
+import { inject, observer } from 'mobx-react';
 import React from 'react';
 import { MutationFn } from 'react-apollo';
-import { Form, Formik } from 'formik';
+import { Form, Formik, FormikActions } from 'formik';
 import { AddMakerTask, AddMakerTaskVariables } from '../../graphqls/schema';
 import {
   AddMakerTaskMutation,
   ADD_MAKER_TASK,
 } from '../../graphqls/Maker/mutations';
+import { RootMobxStore } from '../../stores/mobx';
+import MakerTaskStore from '../../stores/maker/makerTask';
+
+interface InjectedProps {
+  makerTaskStore: MakerTaskStore;
+}
 
 interface FormValues {
   title: string;
 }
 
+@inject((stores: RootMobxStore) => ({
+  makerTaskStore: stores.makerTask as MakerTaskStore,
+}))
+@observer
 export default class DailyMakerTaskForm extends React.PureComponent {
+  get injected() {
+    return this.props as InjectedProps;
+  }
+
   public render() {
     return (
-      <AddMakerTaskMutation mutation={ADD_MAKER_TASK}>
-        {(mutate, { data, loading }) => {
-          return (
-            <Formik
-              initialValues={{
-                title: '',
-              }}
-              onSubmit={this.mutateMakerTask(mutate)}
-              render={({}) => (
-                <Form>
-                  <input type="string" name="title" />
-                  <button type="submit">submit</button>
-                </Form>
-              )}
-            />
-          );
+      <Formik
+        initialValues={{
+          title: '',
         }}
-      </AddMakerTaskMutation>
+        onSubmit={this.mutateMakerTask}
+        render={props => (
+          <Form>
+            <TextField
+              type="text"
+              name="title"
+              onChange={props.handleChange}
+              value={props.values.title}
+              fullWidth
+              variant="outlined"
+            />
+            <Button variant="contained" type="submit">
+              submit
+            </Button>
+          </Form>
+        )}
+      />
     );
   }
 
   private mutateMakerTask = (
-    mutate: MutationFn<AddMakerTask, AddMakerTaskVariables>
-  ) => async (values: FormValues) => {
-    await mutate({ variables: { makerTask: values } });
+    values: FormValues,
+    actions: FormikActions<FormValues>
+  ) => {
+    this.injected.makerTaskStore.addMakerTask(values);
+    actions.resetForm();
   };
 }

@@ -1,4 +1,4 @@
-import { List } from '@material-ui/core';
+import { List, Typography } from '@material-ui/core';
 import React from 'react';
 import styled from 'styled-components';
 import { MakerTaskDetail } from '../../graphqls/schema';
@@ -29,7 +29,4 @@ export default class DailyMakerTaskList extends React.PureComponent<Props> {
   }
 }
 
-const Container = styled.div`
-  width: 800px;
-  margin: auto;
-`;
+const Container = styled.div``;

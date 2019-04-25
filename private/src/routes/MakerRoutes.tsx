@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Navigation, { RouteItem } from '../components/Navigation';
 import DailyMakerPage from '../pages/maker/DailyMakerPage';
 import DailyMakerTasksPage from '../pages/maker/DailyMakerTasksPage';
+import MakerHomePage from '../pages/maker/MakerHomePage';
 import { Switch } from 'react-router';
 import { Route } from 'react-router-dom';
 
@@ -23,7 +24,7 @@ export default class MakerRoutes extends React.PureComponent {
               component={route.component}
             />
           ))}
-          <Route component={DailyMakerPage} />
+          <Route component={MakerHomePage} />
         </Switch>
       </Container>
     );
@@ -44,8 +45,18 @@ export const dailyMakerTasksRoute = {
   path: 'daily/tasks',
 };
 
+export const makerHomeRoute = {
+  component: MakerHomePage,
+  title: 'Maker Home',
+  path: 'home',
+};
+
 const title = 'Maker';
-const routes: RouteItem[] = [dailyMakerRoute, dailyMakerTasksRoute];
+const routes: RouteItem[] = [
+  dailyMakerRoute,
+  dailyMakerTasksRoute,
+  makerHomeRoute,
+];
 
 const Container = styled.div`
   padding-top: 64px;
